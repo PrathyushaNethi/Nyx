@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Defect_Score__c</fullName>
+    <label>Defect Score</label>
+    <type>Number</type>
+    <precision>5</precision>
+    <scale>0</scale>
+    <formula>IF(ISPICKVAL(Severity__c, "Critical"), 40, IF(ISPICKVAL(Severity__c, "High"), 25, IF(ISPICKVAL(Severity__c, "Medium"), 10, IF(ISPICKVAL(Severity__c, "Low"), 5, 0))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+</CustomField>

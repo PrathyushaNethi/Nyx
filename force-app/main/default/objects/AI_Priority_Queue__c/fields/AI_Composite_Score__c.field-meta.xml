@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AI_Composite_Score__c</fullName>
+    <label>AI Composite Score</label>
+    <type>Number</type>
+    <precision>5</precision>
+    <scale>2</scale>
+    <formula>NULLVALUE(Wildfire_Risk_Score__r.Total_Risk_Score__c, 0) +
+    IF(Wildfire_Risk_Score__r.Risk_Tier__c = "Critical", 20,
+    IF(Wildfire_Risk_Score__r.Risk_Tier__c = "High", 15,
+    IF(Wildfire_Risk_Score__r.Risk_Tier__c = "Medium", 10, 5))) +
+    IF(NULLVALUE(Days_Since_Inspection__c, 0) > 365, 15,
+    IF(NULLVALUE(Days_Since_Inspection__c, 0) > 180, 8, 0))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+</CustomField>

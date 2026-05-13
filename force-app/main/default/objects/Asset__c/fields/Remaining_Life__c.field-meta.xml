@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Remaining_Life__c</fullName>
+    <label>Remaining Life %</label>
+    <type>Number</type>
+    <precision>5</precision>
+    <scale>1</scale>
+    <formula>IF(AND(NOT(ISBLANK(Install_Date__c)), Expected_Lifespan__c > 0), MAX(0, (Expected_Lifespan__c - FLOOR((TODAY() - Install_Date__c) / 365)) / Expected_Lifespan__c * 100), NULL)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+</CustomField>

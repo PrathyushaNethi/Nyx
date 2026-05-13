@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Violation_Severity__c</fullName>
+    <label>Violation Severity</label>
+    <type>Text</type>
+    <formula>IF(Clearance_Violation__c, IF(Clearance_to_Power__c &lt; Min_Required_Clearance__c * 0.5, "Critical", IF(Clearance_to_Power__c &lt; Min_Required_Clearance__c * 0.75, "High", "Low")), "None")</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+</CustomField>

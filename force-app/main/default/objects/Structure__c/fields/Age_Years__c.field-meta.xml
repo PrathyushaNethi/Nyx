@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Age_Years__c</fullName>
+    <label>Age (Years)</label>
+    <type>Number</type>
+    <precision>18</precision>
+    <scale>0</scale>
+    <formula>IF(NOT(ISBLANK(Install_Date__c)), FLOOR((TODAY() - Install_Date__c) / 365), NULL)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+</CustomField>

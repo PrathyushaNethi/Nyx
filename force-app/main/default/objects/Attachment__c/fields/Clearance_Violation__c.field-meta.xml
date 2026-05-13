@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Clearance_Violation__c</fullName>
+    <label>Clearance Violation</label>
+    <type>Checkbox</type>
+    <formula>IF(AND(Clearance_to_Power__c > 0, Min_Required_Clearance__c > 0), Clearance_to_Power__c &lt; Min_Required_Clearance__c, FALSE)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+</CustomField>

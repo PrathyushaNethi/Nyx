@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Defect Finding</label>
+    <pluralLabel>Defect Findings</pluralLabel>
+    <nameField>
+        <label>Defect Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>DEF-{0000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ControlledByParent</sharingModel>
+    <fields>
+        <fullName>Inspection__c</fullName>
+        <label>Inspection</label>
+        <type>MasterDetail</type>
+        <referenceTo>Inspection__c</referenceTo>
+        <relationshipName>Defect_Findings</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Structure__c</fullName>
+        <label>Structure</label>
+        <type>Lookup</type>
+        <referenceTo>Structure__c</referenceTo>
+        <relationshipName>Defect_Findings</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Defect_Type__c</fullName>
+        <label>Defect Type</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Lean</fullName><label>Lean</label><default>false</default></value>
+                <value><fullName>Burn Mark</fullName><label>Burn Mark</label><default>false</default></value>
+                <value><fullName>Corrosion</fullName><label>Corrosion</label><default>false</default></value>
+                <value><fullName>Vegetation Contact</fullName><label>Vegetation Contact</label><default>false</default></value>
+                <value><fullName>Broken Hardware</fullName><label>Broken Hardware</label><default>false</default></value>
+                <value><fullName>Cracked Insulator</fullName><label>Cracked Insulator</label><default>false</default></value>
+                <value><fullName>Damaged Conductor</fullName><label>Damaged Conductor</label><default>false</default></value>
+                <value><fullName>Missing Hardware</fullName><label>Missing Hardware</label><default>false</default></value>
+                <value><fullName>Other</fullName><label>Other</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Severity__c</fullName>
+        <label>Severity</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Critical</fullName><label>Critical</label><default>false</default></value>
+                <value><fullName>High</fullName><label>High</label><default>false</default></value>
+                <value><fullName>Medium</fullName><label>Medium</label><default>false</default></value>
+                <value><fullName>Low</fullName><label>Low</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Wildfire_Risk_Contribution__c</fullName>
+        <label>Wildfire Risk Contribution</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Direct</fullName><label>Direct</label><default>false</default></value>
+                <value><fullName>Indirect</fullName><label>Indirect</label><default>false</default></value>
+                <value><fullName>None</fullName><label>None</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Photo__c</fullName>
+        <label>Photo</label>
+        <type>Url</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Recommended_Action__c</fullName>
+        <label>Recommended Action</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Replace</fullName><label>Replace</label><default>false</default></value>
+                <value><fullName>Repair</fullName><label>Repair</label><default>false</default></value>
+                <value><fullName>Monitor</fullName><label>Monitor</label><default>false</default></value>
+                <value><fullName>No Action</fullName><label>No Action</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <label>Status</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Open</fullName><label>Open</label><default>true</default></value>
+                <value><fullName>In Progress</fullName><label>In Progress</label><default>false</default></value>
+                <value><fullName>Resolved</fullName><label>Resolved</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Resolution_Date__c</fullName>
+        <label>Resolution Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <label>Notes</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>4</visibleLines>
+    </fields>
+</CustomObject>

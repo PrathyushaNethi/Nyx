@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vegetation_Risk_Score__c</fullName>
+    <label>Vegetation Risk Score</label>
+    <type>Number</type>
+    <precision>5</precision>
+    <scale>0</scale>
+    <formula>IF(ISPICKVAL(Flammability_Rating__c, "Extreme"), 20, IF(ISPICKVAL(Flammability_Rating__c, "High"), 15, IF(ISPICKVAL(Flammability_Rating__c, "Medium"), 8, 3))) + IF(Clearance_Violation__c, 10, 0) + IF(Trim_Overdue__c, 5, 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+</CustomField>

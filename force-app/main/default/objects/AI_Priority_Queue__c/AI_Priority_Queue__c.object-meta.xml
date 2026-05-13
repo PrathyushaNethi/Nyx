@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>AI Priority Queue</label>
+    <pluralLabel>AI Priority Queues</pluralLabel>
+    <nameField>
+        <label>Queue Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>APQ-{0000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Structure__c</fullName>
+        <label>Structure</label>
+        <type>Lookup</type>
+        <referenceTo>Structure__c</referenceTo>
+        <relationshipName>AI_Priority_Queues</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Wildfire_Risk_Score__c</fullName>
+        <label>Wildfire Risk Score</label>
+        <type>Lookup</type>
+        <referenceTo>Wildfire_Risk_Score__c</referenceTo>
+        <relationshipName>AI_Priority_Queues</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Priority_Rank__c</fullName>
+        <label>Priority Rank</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>0</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Recommended_Action__c</fullName>
+        <label>Recommended Action</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Immediate Replace</fullName><label>Immediate Replace</label><default>false</default></value>
+                <value><fullName>Schedule Repair</fullName><label>Schedule Repair</label><default>false</default></value>
+                <value><fullName>Monitor</fullName><label>Monitor</label><default>false</default></value>
+                <value><fullName>Re-inspect</fullName><label>Re-inspect</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Queue_Status__c</fullName>
+        <label>Queue Status</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Active</fullName><label>Active</label><default>true</default></value>
+                <value><fullName>Work Order Created</fullName><label>Work Order Created</label><default>false</default></value>
+                <value><fullName>Resolved</fullName><label>Resolved</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Last_Updated__c</fullName>
+        <label>Last Updated</label>
+        <type>DateTime</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <label>Notes</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>4</visibleLines>
+    </fields>
+</CustomObject>

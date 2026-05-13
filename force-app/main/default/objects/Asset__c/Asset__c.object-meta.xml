@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Asset</label>
+    <pluralLabel>Assets</pluralLabel>
+    <nameField>
+        <label>Asset Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>AST-{0000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Structure__c</fullName>
+        <label>Structure</label>
+        <type>Lookup</type>
+        <referenceTo>Structure__c</referenceTo>
+        <relationshipName>Assets</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Circuit__c</fullName>
+        <label>Circuit</label>
+        <type>Lookup</type>
+        <referenceTo>Circuit__c</referenceTo>
+        <relationshipName>Assets</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Asset_Type__c</fullName>
+        <label>Asset Type</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Insulator</fullName><label>Insulator</label><default>false</default></value>
+                <value><fullName>Conductor</fullName><label>Conductor</label><default>false</default></value>
+                <value><fullName>Crossarm</fullName><label>Crossarm</label><default>false</default></value>
+                <value><fullName>Fuse</fullName><label>Fuse</label><default>false</default></value>
+                <value><fullName>Hardware</fullName><label>Hardware</label><default>false</default></value>
+                <value><fullName>Transformer</fullName><label>Transformer</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Manufacturer__c</fullName>
+        <label>Manufacturer</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Model_Number__c</fullName>
+        <label>Model Number</label>
+        <type>Text</type>
+        <length>80</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Install_Date__c</fullName>
+        <label>Install Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Expected_Lifespan__c</fullName>
+        <label>Expected Lifespan (yrs)</label>
+        <type>Number</type>
+        <precision>3</precision>
+        <scale>0</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Condition__c</fullName>
+        <label>Condition</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Good</fullName><label>Good</label><default>false</default></value>
+                <value><fullName>Fair</fullName><label>Fair</label><default>false</default></value>
+                <value><fullName>Poor</fullName><label>Poor</label><default>false</default></value>
+                <value><fullName>Critical</fullName><label>Critical</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Warranty_Expiry__c</fullName>
+        <label>Warranty Expiry</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+</CustomObject>

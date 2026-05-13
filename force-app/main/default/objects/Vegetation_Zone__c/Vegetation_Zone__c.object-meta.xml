@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Vegetation Zone</label>
+    <pluralLabel>Vegetation Zones</pluralLabel>
+    <nameField>
+        <label>Zone Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>VZ-{0000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ControlledByParent</sharingModel>
+    <fields>
+        <fullName>Structure__c</fullName>
+        <label>Structure</label>
+        <type>MasterDetail</type>
+        <referenceTo>Structure__c</referenceTo>
+        <relationshipName>Vegetation_Zones</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Zone_Direction__c</fullName>
+        <label>Zone Direction</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>North</fullName><label>North</label><default>false</default></value>
+                <value><fullName>South</fullName><label>South</label><default>false</default></value>
+                <value><fullName>East</fullName><label>East</label><default>false</default></value>
+                <value><fullName>West</fullName><label>West</label><default>false</default></value>
+                <value><fullName>All Sides</fullName><label>All Sides</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Primary_Species__c</fullName>
+        <label>Primary Species</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Secondary_Species__c</fullName>
+        <label>Secondary Species</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Flammability_Rating__c</fullName>
+        <label>Flammability Rating</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Extreme</fullName><label>Extreme</label><default>false</default></value>
+                <value><fullName>High</fullName><label>High</label><default>false</default></value>
+                <value><fullName>Medium</fullName><label>Medium</label><default>false</default></value>
+                <value><fullName>Low</fullName><label>Low</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Estimated_Height__c</fullName>
+        <label>Estimated Height (ft)</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Distance_to_Line__c</fullName>
+        <label>Distance to Nearest Line (ft)</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Min_Clearance__c</fullName>
+        <label>Min Required Clearance (ft)</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Growth_Rate__c</fullName>
+        <label>Growth Rate</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Fast</fullName><label>Fast (&gt;3ft/yr)</label><default>false</default></value>
+                <value><fullName>Medium</fullName><label>Medium</label><default>false</default></value>
+                <value><fullName>Slow</fullName><label>Slow</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Last_Trim_Date__c</fullName>
+        <label>Last Trim Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Next_Scheduled_Trim__c</fullName>
+        <label>Next Scheduled Trim</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Trim_Contractor__c</fullName>
+        <label>Trim Contractor</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <label>Notes</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>4</visibleLines>
+    </fields>
+</CustomObject>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Attachment</label>
+    <pluralLabel>Attachments</pluralLabel>
+    <nameField>
+        <label>Attachment Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>ATT-{0000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ControlledByParent</sharingModel>
+    <fields>
+        <fullName>Structure__c</fullName>
+        <label>Structure</label>
+        <type>MasterDetail</type>
+        <referenceTo>Structure__c</referenceTo>
+        <relationshipName>Attachments</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Attachment_Type__c</fullName>
+        <label>Attachment Type</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Power Line</fullName><label>Power Line</label><default>false</default></value>
+                <value><fullName>Telecom</fullName><label>Telecom</label><default>false</default></value>
+                <value><fullName>Fiber</fullName><label>Fiber</label><default>false</default></value>
+                <value><fullName>Cable TV</fullName><label>Cable TV</label><default>false</default></value>
+                <value><fullName>Street Light</fullName><label>Street Light</label><default>false</default></value>
+                <value><fullName>Other</fullName><label>Other</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Owner_Company__c</fullName>
+        <label>Owner Company</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Wire_Condition__c</fullName>
+        <label>Wire Condition</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Good</fullName><label>Good</label><default>false</default></value>
+                <value><fullName>Fair</fullName><label>Fair</label><default>false</default></value>
+                <value><fullName>Poor</fullName><label>Poor</label><default>false</default></value>
+                <value><fullName>Critical</fullName><label>Critical</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Height_on_Pole__c</fullName>
+        <label>Height on Pole (ft)</label>
+        <type>Number</type>
+        <precision>4</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Clearance_to_Power__c</fullName>
+        <label>Clearance to Power (ft)</label>
+        <type>Number</type>
+        <precision>4</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Min_Required_Clearance__c</fullName>
+        <label>Min Required Clearance (ft)</label>
+        <type>Number</type>
+        <precision>4</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Install_Date__c</fullName>
+        <label>Install Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <label>Notes</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>4</visibleLines>
+    </fields>
+</CustomObject>

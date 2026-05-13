@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Inspection</label>
+    <pluralLabel>Inspections</pluralLabel>
+    <nameField>
+        <label>Inspection Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>INS-{0000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Structure__c</fullName>
+        <label>Structure</label>
+        <type>Lookup</type>
+        <referenceTo>Structure__c</referenceTo>
+        <relationshipName>Inspections</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Inspection_Date__c</fullName>
+        <label>Inspection Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Inspector__c</fullName>
+        <label>Inspector</label>
+        <type>Lookup</type>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Inspections</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Inspection_Method__c</fullName>
+        <label>Inspection Method</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Ground</fullName><label>Ground</label><default>false</default></value>
+                <value><fullName>Aerial</fullName><label>Aerial</label><default>false</default></value>
+                <value><fullName>Drone</fullName><label>Drone</label><default>false</default></value>
+                <value><fullName>LiDAR</fullName><label>LiDAR</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Overall_Result__c</fullName>
+        <label>Overall Result</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Pass</fullName><label>Pass</label><default>false</default></value>
+                <value><fullName>Fail</fullName><label>Fail</label><default>false</default></value>
+                <value><fullName>Needs Monitoring</fullName><label>Needs Monitoring</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Weather_Conditions__c</fullName>
+        <label>Weather Conditions</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <label>Notes</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>4</visibleLines>
+    </fields>
+</CustomObject>

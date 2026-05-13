@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Risk_Trend__c</fullName>
+    <label>Risk Trend</label>
+    <type>Text</type>
+    <formula>IF(ISBLANK(Previous_Risk_Tier__c), "New", IF(CASE(Risk_Tier__c, "Critical", 4, "High", 3, "Medium", 2, "Low", 1, 0) > CASE(Previous_Risk_Tier__c, "Critical", 4, "High", 3, "Medium", 2, "Low", 1, 0), "Worsening", IF(CASE(Risk_Tier__c, "Critical", 4, "High", 3, "Medium", 2, "Low", 1, 0) &lt; CASE(Previous_Risk_Tier__c, "Critical", 4, "High", 3, "Medium", 2, "Low", 1, 0), "Improving", "Stable")))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+</CustomField>

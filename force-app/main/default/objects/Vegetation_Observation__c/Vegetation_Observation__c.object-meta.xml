@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Vegetation Observation</label>
+    <pluralLabel>Vegetation Observations</pluralLabel>
+    <nameField>
+        <label>Observation Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>VO-{0000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ControlledByParent</sharingModel>
+    <fields>
+        <fullName>Inspection__c</fullName>
+        <label>Inspection</label>
+        <type>MasterDetail</type>
+        <referenceTo>Inspection__c</referenceTo>
+        <relationshipName>Vegetation_Observations</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Structure__c</fullName>
+        <label>Structure</label>
+        <type>Lookup</type>
+        <referenceTo>Structure__c</referenceTo>
+        <relationshipName>Vegetation_Observations</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Vegetation_Zone__c</fullName>
+        <label>Vegetation Zone</label>
+        <type>Lookup</type>
+        <referenceTo>Vegetation_Zone__c</referenceTo>
+        <relationshipName>Vegetation_Observations</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Observation_Date__c</fullName>
+        <label>Observation Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Encroachment_Level__c</fullName>
+        <label>Encroachment Level</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>None</fullName><label>None</label><default>false</default></value>
+                <value><fullName>Minimal</fullName><label>Minimal</label><default>false</default></value>
+                <value><fullName>Moderate</fullName><label>Moderate</label><default>false</default></value>
+                <value><fullName>Severe</fullName><label>Severe</label><default>false</default></value>
+                <value><fullName>Contact</fullName><label>Contact</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Line_Contact__c</fullName>
+        <label>Line Contact</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Contact_Type__c</fullName>
+        <label>Contact Type</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Primary Line</fullName><label>Primary Line</label><default>false</default></value>
+                <value><fullName>Secondary Line</fullName><label>Secondary Line</label><default>false</default></value>
+                <value><fullName>Telecom</fullName><label>Telecom</label><default>false</default></value>
+                <value><fullName>Hardware</fullName><label>Hardware</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Estimated_Clearance__c</fullName>
+        <label>Estimated Clearance (ft)</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Fire_Risk_Level__c</fullName>
+        <label>Fire Risk Level</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Critical</fullName><label>Critical</label><default>false</default></value>
+                <value><fullName>High</fullName><label>High</label><default>false</default></value>
+                <value><fullName>Medium</fullName><label>Medium</label><default>false</default></value>
+                <value><fullName>Low</fullName><label>Low</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Recommended_Action__c</fullName>
+        <label>Recommended Action</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Emergency Trim</fullName><label>Emergency Trim</label><default>false</default></value>
+                <value><fullName>Schedule Trim</fullName><label>Schedule Trim</label><default>false</default></value>
+                <value><fullName>Monitor</fullName><label>Monitor</label><default>false</default></value>
+                <value><fullName>No Action</fullName><label>No Action</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Action_Due_Date__c</fullName>
+        <label>Action Due Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Photo__c</fullName>
+        <label>Photo</label>
+        <type>Url</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Work_Order_Created__c</fullName>
+        <label>Work Order Created</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <label>Notes</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>4</visibleLines>
+    </fields>
+</CustomObject>

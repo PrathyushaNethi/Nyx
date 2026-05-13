@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Work Order</label>
+    <pluralLabel>Work Orders</pluralLabel>
+    <nameField>
+        <label>Work Order Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>WO-{0000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Structure__c</fullName>
+        <label>Structure</label>
+        <type>Lookup</type>
+        <referenceTo>Structure__c</referenceTo>
+        <relationshipName>Work_Orders</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Defect_Finding__c</fullName>
+        <label>Defect Finding</label>
+        <type>Lookup</type>
+        <referenceTo>Defect_Finding__c</referenceTo>
+        <relationshipName>Work_Orders</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Work_Type__c</fullName>
+        <label>Work Type</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Replace</fullName><label>Replace</label><default>false</default></value>
+                <value><fullName>Repair</fullName><label>Repair</label><default>false</default></value>
+                <value><fullName>Trim Vegetation</fullName><label>Trim Vegetation</label><default>false</default></value>
+                <value><fullName>Inspect Again</fullName><label>Inspect Again</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <label>Priority</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Critical</fullName><label>Critical</label><default>false</default></value>
+                <value><fullName>High</fullName><label>High</label><default>false</default></value>
+                <value><fullName>Medium</fullName><label>Medium</label><default>false</default></value>
+                <value><fullName>Low</fullName><label>Low</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Assigned_To__c</fullName>
+        <label>Assigned To</label>
+        <type>Lookup</type>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Work_Orders</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Scheduled_Date__c</fullName>
+        <label>Scheduled Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Completed_Date__c</fullName>
+        <label>Completed Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <label>Status</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>New</fullName><label>New</label><default>true</default></value>
+                <value><fullName>Assigned</fullName><label>Assigned</label><default>false</default></value>
+                <value><fullName>In Progress</fullName><label>In Progress</label><default>false</default></value>
+                <value><fullName>Completed</fullName><label>Completed</label><default>false</default></value>
+                <value><fullName>Cancelled</fullName><label>Cancelled</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Estimated_Cost__c</fullName>
+        <label>Estimated Cost ($)</label>
+        <type>Currency</type>
+        <precision>16</precision>
+        <scale>2</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Actual_Cost__c</fullName>
+        <label>Actual Cost ($)</label>
+        <type>Currency</type>
+        <precision>16</precision>
+        <scale>2</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <label>Notes</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>4</visibleLines>
+    </fields>
+</CustomObject>

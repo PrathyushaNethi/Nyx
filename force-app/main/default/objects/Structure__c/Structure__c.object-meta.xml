@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Structure</label>
+    <pluralLabel>Structures</pluralLabel>
+    <nameField>
+        <label>Structure Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>STR-{0000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Service_Territory__c</fullName>
+        <label>Service Territory</label>
+        <type>Lookup</type>
+        <referenceTo>Service_Territory__c</referenceTo>
+        <relationshipName>Structures</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Circuit__c</fullName>
+        <label>Circuit</label>
+        <type>Lookup</type>
+        <referenceTo>Circuit__c</referenceTo>
+        <relationshipName>Structures</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Structure_Type__c</fullName>
+        <label>Structure Type</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Wood Pole</fullName><label>Wood Pole</label><default>false</default></value>
+                <value><fullName>Steel Pole</fullName><label>Steel Pole</label><default>false</default></value>
+                <value><fullName>Transformer</fullName><label>Transformer</label><default>false</default></value>
+                <value><fullName>Switch</fullName><label>Switch</label><default>false</default></value>
+                <value><fullName>Crossarm</fullName><label>Crossarm</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Install_Date__c</fullName>
+        <label>Install Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <label>Address / Location</label>
+        <type>TextArea</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Geolocation__c</fullName>
+        <label>Geolocation</label>
+        <type>Location</type>
+        <required>false</required>
+        <scale>8</scale>
+    </fields>
+    <fields>
+        <fullName>Condition_Rating__c</fullName>
+        <label>Condition Rating</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Good</fullName><label>Good</label><default>false</default></value>
+                <value><fullName>Fair</fullName><label>Fair</label><default>false</default></value>
+                <value><fullName>Poor</fullName><label>Poor</label><default>false</default></value>
+                <value><fullName>Critical</fullName><label>Critical</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Last_Inspection_Date__c</fullName>
+        <label>Last Inspection Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <label>Status</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Active</fullName><label>Active</label><default>true</default></value>
+                <value><fullName>Decommissioned</fullName><label>Decommissioned</label><default>false</default></value>
+                <value><fullName>Under Repair</fullName><label>Under Repair</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+</CustomObject>

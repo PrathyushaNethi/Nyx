@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Wildfire Risk Score</label>
+    <pluralLabel>Wildfire Risk Scores</pluralLabel>
+    <nameField>
+        <label>Score Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>WRS-{0000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Structure__c</fullName>
+        <label>Structure</label>
+        <type>Lookup</type>
+        <referenceTo>Structure__c</referenceTo>
+        <relationshipName>Wildfire_Risk_Scores</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Calculation_Date__c</fullName>
+        <label>Calculation Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Defect_Score__c</fullName>
+        <label>Defect Score</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>2</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Age_Score__c</fullName>
+        <label>Age Score</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>2</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>HFTD_Zone_Score__c</fullName>
+        <label>HFTD Zone Score</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>2</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Clearance_Score__c</fullName>
+        <label>Clearance Violation Score</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>2</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Vegetation_Score__c</fullName>
+        <label>Vegetation Score</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>2</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Previous_Risk_Tier__c</fullName>
+        <label>Previous Risk Tier</label>
+        <type>Text</type>
+        <length>20</length>
+        <required>false</required>
+    </fields>
+</CustomObject>

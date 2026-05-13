@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Service Territory</label>
+    <pluralLabel>Service Territories</pluralLabel>
+    <nameField>
+        <label>Territory Name</label>
+        <type>Text</type>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Region__c</fullName>
+        <label>Region</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>North</fullName><label>North</label><default>false</default></value>
+                <value><fullName>South</fullName><label>South</label><default>false</default></value>
+                <value><fullName>East</fullName><label>East</label><default>false</default></value>
+                <value><fullName>West</fullName><label>West</label><default>false</default></value>
+                <value><fullName>Central</fullName><label>Central</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>County__c</fullName>
+        <label>County</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <label>State</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>CA</fullName><label>CA</label><default>false</default></value>
+                <value><fullName>OR</fullName><label>OR</label><default>false</default></value>
+                <value><fullName>WA</fullName><label>WA</label><default>false</default></value>
+                <value><fullName>NV</fullName><label>NV</label><default>false</default></value>
+                <value><fullName>AZ</fullName><label>AZ</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Territory_Manager__c</fullName>
+        <label>Territory Manager</label>
+        <type>Lookup</type>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Territory_Manager</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Active__c</fullName>
+        <label>Active</label>
+        <type>Checkbox</type>
+        <defaultValue>true</defaultValue>
+    </fields>
+</CustomObject>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Overdue_Inspection__c</fullName>
+    <label>Overdue Inspection</label>
+    <type>Checkbox</type>
+    <formula>IF(NOT(ISBLANK(Structure__r.Last_Inspection_Date__c)), TODAY() - Structure__r.Last_Inspection_Date__c > 365, FALSE)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+</CustomField>

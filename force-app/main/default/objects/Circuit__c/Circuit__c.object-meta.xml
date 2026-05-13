@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Circuit</label>
+    <pluralLabel>Circuits</pluralLabel>
+    <nameField>
+        <label>Circuit Name</label>
+        <type>Text</type>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <fields>
+        <fullName>Service_Territory__c</fullName>
+        <label>Service Territory</label>
+        <type>Lookup</type>
+        <referenceTo>Service_Territory__c</referenceTo>
+        <relationshipName>Circuits</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Circuit_Type__c</fullName>
+        <label>Circuit Type</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Distribution</fullName><label>Distribution</label><default>false</default></value>
+                <value><fullName>Transmission</fullName><label>Transmission</label><default>false</default></value>
+                <value><fullName>Sub-Transmission</fullName><label>Sub-Transmission</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Voltage_kV__c</fullName>
+        <label>Voltage (kV)</label>
+        <type>Number</type>
+        <precision>6</precision>
+        <scale>2</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Circuit_Length__c</fullName>
+        <label>Circuit Length (miles)</label>
+        <type>Number</type>
+        <precision>6</precision>
+        <scale>2</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>HFTD_Zone__c</fullName>
+        <label>HFTD Zone</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Tier 3</fullName><label>Tier 3</label><default>false</default></value>
+                <value><fullName>Tier 2</fullName><label>Tier 2</label><default>false</default></value>
+                <value><fullName>Non-HFTD</fullName><label>Non-HFTD</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <label>Status</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Active</fullName><label>Active</label><default>true</default></value>
+                <value><fullName>Inactive</fullName><label>Inactive</label><default>false</default></value>
+                <value><fullName>Under Maintenance</fullName><label>Under Maintenance</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+</CustomObject>
