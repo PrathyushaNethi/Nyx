@@ -25,18 +25,7 @@
                 <elementReference>$Flow.CurrentDateTime</elementReference>
             </value>
         </assignmentItems>
-        <connector>
-            <targetReference>Update_Assignment</targetReference>
-        </connector>
     </assignments>
-
-    <recordUpdates>
-        <name>Update_Assignment</name>
-        <label>Update Assignment</label>
-        <locationX>176</locationX>
-        <locationY>300</locationY>
-        <inputReference>$Record</inputReference>
-    </recordUpdates>
 
     <start>
         <locationX>56</locationX>
