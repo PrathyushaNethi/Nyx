@@ -136,10 +136,77 @@ public class WildfireRiskScoreCalculator {
 
         if (!scoresToInsert.isEmpty()) {
             insert scoresToInsert;
+            syncAIPriorityQueue(scoresToInsert);
         }
 
         if (!structuresToUpdate.isEmpty()) {
             update structuresToUpdate;
         }
+    }
+
+    private static void syncAIPriorityQueue(List<Wildfire_Risk_Score__c> insertedScores) {
+        // Build structure → risk score map with in-memory total scores
+        Map<Id, Wildfire_Risk_Score__c> structureToScore = new Map<Id, Wildfire_Risk_Score__c>();
+        for (Wildfire_Risk_Score__c wrs : insertedScores) {
+            structureToScore.put(wrs.Structure__c, wrs);
+        }
+
+        // Find existing active queue records for these structures
+        Map<Id, AI_Priority_Queue__c> existingQueue = new Map<Id, AI_Priority_Queue__c>();
+        for (AI_Priority_Queue__c q : [
+            SELECT Id, Structure__c
+            FROM AI_Priority_Queue__c
+            WHERE Structure__c IN :structureToScore.keySet()
+            AND Queue_Status__c = 'Active'
+        ]) {
+            existingQueue.put(q.Structure__c, q);
+        }
+
+        List<AI_Priority_Queue__c> queueToUpsert = new List<AI_Priority_Queue__c>();
+        for (Id structureId : structureToScore.keySet()) {
+            Wildfire_Risk_Score__c wrs = structureToScore.get(structureId);
+
+            Decimal totalScore = nvl(wrs.Defect_Score__c)
+                + nvl(wrs.Age_Score__c)
+                + nvl(wrs.HFTD_Zone_Score__c)
+                + nvl(wrs.Clearance_Score__c)
+                + nvl(wrs.Vegetation_Score__c);
+
+            String action;
+            if      (totalScore >= 80) action = 'Immediate Replace';
+            else if (totalScore >= 60) action = 'Schedule Repair';
+            else if (totalScore >= 40) action = 'Re-inspect';
+            else                       action = 'Monitor';
+
+            AI_Priority_Queue__c q = existingQueue.containsKey(structureId)
+                ? existingQueue.get(structureId)
+                : new AI_Priority_Queue__c(Structure__c = structureId);
+
+            q.Wildfire_Risk_Score__c = wrs.Id;
+            q.Queue_Status__c        = 'Active';
+            q.Recommended_Action__c  = action;
+            q.Last_Updated__c        = DateTime.now();
+            queueToUpsert.add(q);
+        }
+        upsert queueToUpsert;
+
+        // Re-rank all active queue records globally by AI_Composite_Score__c (formula)
+        List<AI_Priority_Queue__c> allActive = [
+            SELECT Id
+            FROM AI_Priority_Queue__c
+            WHERE Queue_Status__c = 'Active'
+            ORDER BY AI_Composite_Score__c DESC NULLS LAST
+        ];
+        List<AI_Priority_Queue__c> toRank = new List<AI_Priority_Queue__c>();
+        for (Integer i = 0; i < allActive.size(); i++) {
+            toRank.add(new AI_Priority_Queue__c(Id = allActive[i].Id, Priority_Rank__c = i + 1));
+        }
+        if (!toRank.isEmpty()) {
+            update toRank;
+        }
+    }
+
+    private static Decimal nvl(Decimal val) {
+        return val != null ? val : 0;
     }
 }
