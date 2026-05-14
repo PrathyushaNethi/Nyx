@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wind_Speed__c</fullName>
+    <label>Wind Speed</label>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Calm</fullName><label>Calm (0-5 mph)</label><default>false</default></value>
+            <value><fullName>Moderate</fullName><label>Moderate (6-15 mph)</label><default>false</default></value>
+            <value><fullName>High</fullName><label>High (16-30 mph)</label><default>false</default></value>
+            <value><fullName>Extreme</fullName><label>Extreme (30+ mph)</label><default>false</default></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

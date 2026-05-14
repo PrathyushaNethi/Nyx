@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wind_Score__c</fullName>
+    <label>Wind Score</label>
+    <type>Number</type>
+    <precision>3</precision>
+    <scale>0</scale>
+    <formula>IF(ISPICKVAL(Wind_Speed__c, "Extreme"), 10,
+    IF(ISPICKVAL(Wind_Speed__c, "High"), 7,
+    IF(ISPICKVAL(Wind_Speed__c, "Moderate"), 3, 0)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+</CustomField>
