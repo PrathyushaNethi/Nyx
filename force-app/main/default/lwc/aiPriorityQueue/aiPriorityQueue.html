@@ -1,0 +1,109 @@
+<template>
+    <lightning-card title="AI Priority Queue" icon-name="standard:bot">
+        <div slot="actions">
+            <lightning-badge label={badgeLabel}></lightning-badge>
+            <lightning-button-icon
+                icon-name="utility:refresh"
+                alternative-text="Refresh"
+                title="Refresh"
+                onclick={handleRefresh}>
+            </lightning-button-icon>
+        </div>
+
+        <div class="slds-card__body slds-card__body_inner">
+
+            <template if:true={isLoading}>
+                <lightning-spinner
+                    alternative-text="Loading priority queue"
+                    size="medium">
+                </lightning-spinner>
+            </template>
+
+            <template if:true={hasError}>
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                    <lightning-icon
+                        icon-name="utility:error"
+                        alternative-text="Error"
+                        size="x-small"
+                        class="slds-m-right_x-small">
+                    </lightning-icon>
+                    <h2>{errorMessage}</h2>
+                </div>
+            </template>
+
+            <template if:true={isEmpty}>
+                <div class="nyx-empty-state">
+                    <lightning-icon
+                        icon-name="utility:check"
+                        alternative-text="All clear"
+                        size="large"
+                        class="nyx-empty-icon">
+                    </lightning-icon>
+                    <p class="slds-text-heading_small slds-m-top_small">No structures in priority queue</p>
+                    <p class="slds-text-body_regular slds-text-color_weak">All structures are within acceptable risk levels</p>
+                </div>
+            </template>
+
+            <template if:true={hasData}>
+                <ul class="slds-has-dividers_bottom-space">
+                    <template for:each={priorityQueue} for:item="item">
+                        <li key={item.Id} class="slds-item nyx-queue-item" onclick={handleItemClick} data-id={item.Id}>
+
+                            <div class="slds-grid slds-gutters_small slds-grid_vertical-align-center">
+
+                                <!-- Rank -->
+                                <div class="slds-col slds-size_1-of-12">
+                                    <div class={item.rankClass}>
+                                        <span class="slds-text-body_small slds-text-color_inverse">{item.rank}</span>
+                                    </div>
+                                </div>
+
+                                <!-- Main Content -->
+                                <div class="slds-col slds-size_9-of-12">
+                                    <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_xx-small">
+                                        <span class="slds-text-heading_small slds-m-right_small">{item.structureName}</span>
+                                        <lightning-badge label={item.riskTier} class={item.badgeClass}></lightning-badge>
+                                        <template if:true={item.overdueInspection}>
+                                            <lightning-badge label="Overdue" class="nyx-badge-warning slds-m-left_xx-small"></lightning-badge>
+                                        </template>
+                                    </div>
+
+                                    <div class="slds-grid slds-gutters_small slds-m-bottom_xx-small">
+                                        <div class="slds-col">
+                                            <lightning-icon icon-name="utility:location" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                            <span class="slds-text-body_small slds-text-color_weak">{item.location}</span>
+                                        </div>
+                                        <div class="slds-col">
+                                            <lightning-icon icon-name="utility:clock" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                            <span class="slds-text-body_small slds-text-color_weak">{item.lastInspected}</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Score Bar -->
+                                    <div class="slds-grid slds-grid_vertical-align-center">
+                                        <div class="slds-col">
+                                            <div class="nyx-score-track">
+                                                <div class={item.scoreBarClass} data-width={item.scorePercent}></div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-col slds-size_2-of-12 slds-m-left_small">
+                                            <span class="slds-text-body_small slds-text-color_weak">{item.score} pts</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action -->
+                                <div class="slds-col slds-size_2-of-12 slds-text-align_right">
+                                    <p class="slds-text-body_small slds-text-color_weak nyx-action-text">{item.recommendedAction}</p>
+                                    <lightning-icon icon-name="utility:chevronright" size="x-small" class="slds-text-color_weak"></lightning-icon>
+                                </div>
+
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>

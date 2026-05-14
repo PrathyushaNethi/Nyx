@@ -1,0 +1,59 @@
+.nyx-queue-item {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.15s ease;
+}
+
+.nyx-queue-item:hover {
+    background-color: #f3f3f3;
+}
+
+.nyx-rank-badge {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+}
+
+.nyx-rank-critical { background-color: #c23934; }
+.nyx-rank-high     { background-color: #e07b39; }
+.nyx-rank-medium   { background-color: #f4bc25; }
+.nyx-rank-low      { background-color: #04844b; }
+
+.nyx-score-track {
+    height: 4px;
+    background-color: #dddbda;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.nyx-score-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+}
+
+.nyx-badge-critical { --sds-c-badge-color-background: #c23934; --sds-c-badge-text-color: white; }
+.nyx-badge-high     { --sds-c-badge-color-background: #e07b39; --sds-c-badge-text-color: white; }
+.nyx-badge-medium   { --sds-c-badge-color-background: #f4bc25; --sds-c-badge-text-color: #1c1b1b; }
+.nyx-badge-low      { --sds-c-badge-color-background: #04844b; --sds-c-badge-text-color: white; }
+.nyx-badge-warning  { --sds-c-badge-color-background: #f4bc25; --sds-c-badge-text-color: #1c1b1b; }
+
+.nyx-action-text {
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.nyx-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
