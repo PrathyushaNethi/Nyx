@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inspection_Type__c</fullName>
+    <label>Inspection Type</label>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value><fullName>Aerial</fullName><label>Aerial</label><default>false</default></value>
+            <value><fullName>Ground</fullName><label>Ground</label><default>false</default></value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Inspection Assignment</label>
+    <pluralLabel>Inspection Assignments</pluralLabel>
+    <nameField>
+        <label>Assignment Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>ASN-{0000}</displayFormat>
+        <startingNumber>1</startingNumber>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+
+    <!-- ── CORE FIELDS ── -->
+    <fields>
+        <fullName>Structure__c</fullName>
+        <label>Structure</label>
+        <type>Lookup</type>
+        <referenceTo>Structure__c</referenceTo>
+        <relationshipName>Inspection_Assignments</relationshipName>
+        <required>false</required>
+        <deleteConstraint>SetNull</deleteConstraint>
+    </fields>
+    <fields>
+        <fullName>Inspection_Type__c</fullName>
+        <label>Inspection Type</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Aerial</fullName><label>Aerial</label><default>false</default></value>
+                <value><fullName>Ground</fullName><label>Ground</label><default>false</default></value>
+                <value><fullName>Both</fullName><label>Both</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Assigned_To__c</fullName>
+        <label>Assigned To</label>
+        <type>Lookup</type>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Inspection_Assignments</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Assigned_By__c</fullName>
+        <label>Assigned By</label>
+        <type>Lookup</type>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Assigned_By_Assignments</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Due_Date__c</fullName>
+        <label>Due Date</label>
+        <type>Date</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <label>Priority</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Critical</fullName><label>Critical</label><default>false</default></value>
+                <value><fullName>High</fullName><label>High</label><default>false</default></value>
+                <value><fullName>Medium</fullName><label>Medium</label><default>false</default></value>
+                <value><fullName>Low</fullName><label>Low</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <label>Status</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>New</fullName><label>New</label><default>true</default></value>
+                <value><fullName>In Progress</fullName><label>In Progress</label><default>false</default></value>
+                <value><fullName>Completed</fullName><label>Completed</label><default>false</default></value>
+                <value><fullName>Cancelled</fullName><label>Cancelled</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <label>Notes</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>4</visibleLines>
+    </fields>
+
+    <!-- ── ASSET & EQUIPMENT ── -->
+    <fields>
+        <fullName>Circuit__c</fullName>
+        <label>Circuit</label>
+        <type>Lookup</type>
+        <referenceTo>Circuit__c</referenceTo>
+        <relationshipName>Inspection_Assignments</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Asset__c</fullName>
+        <label>Asset</label>
+        <type>Lookup</type>
+        <referenceTo>Asset__c</referenceTo>
+        <relationshipName>Inspection_Assignments</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Equipment_Type__c</fullName>
+        <label>Equipment Type</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Pole</fullName><label>Pole</label><default>false</default></value>
+                <value><fullName>Transformer</fullName><label>Transformer</label><default>false</default></value>
+                <value><fullName>Switch</fullName><label>Switch</label><default>false</default></value>
+                <value><fullName>Conductor</fullName><label>Conductor</label><default>false</default></value>
+                <value><fullName>Crossarm</fullName><label>Crossarm</label><default>false</default></value>
+                <value><fullName>Other</fullName><label>Other</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Structure_Count__c</fullName>
+        <label>Structure Count</label>
+        <type>Number</type>
+        <precision>6</precision>
+        <scale>0</scale>
+        <required>false</required>
+    </fields>
+
+    <!-- ── SCOPE ── -->
+    <fields>
+        <fullName>Scope_Bucket__c</fullName>
+        <label>Scope Bucket</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Routine</fullName><label>Routine</label><default>false</default></value>
+                <value><fullName>Emergency</fullName><label>Emergency</label><default>false</default></value>
+                <value><fullName>Post-Storm</fullName><label>Post-Storm</label><default>false</default></value>
+                <value><fullName>Wildfire Prevention</fullName><label>Wildfire Prevention</label><default>false</default></value>
+                <value><fullName>Compliance</fullName><label>Compliance</label><default>false</default></value>
+                <value><fullName>HFTD Required</fullName><label>HFTD Required</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Scope_Description__c</fullName>
+        <label>Scope Description</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Estimated_Duration__c</fullName>
+        <label>Estimated Duration (hrs)</label>
+        <type>Number</type>
+        <precision>4</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Actual_Duration__c</fullName>
+        <label>Actual Duration (hrs)</label>
+        <type>Number</type>
+        <precision>4</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+
+    <!-- ── LOCATION ── -->
+    <fields>
+        <fullName>Region__c</fullName>
+        <label>Region</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>North</fullName><label>North</label><default>false</default></value>
+                <value><fullName>South</fullName><label>South</label><default>false</default></value>
+                <value><fullName>East</fullName><label>East</label><default>false</default></value>
+                <value><fullName>West</fullName><label>West</label><default>false</default></value>
+                <value><fullName>Central</fullName><label>Central</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Address_Location__c</fullName>
+        <label>Address / Location</label>
+        <type>TextArea</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>High_Fire_Area__c</fullName>
+        <label>High Fire Area</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>HFTD_Zone__c</fullName>
+        <label>HFTD Zone</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Tier 3</fullName><label>Tier 3</label><default>false</default></value>
+                <value><fullName>Tier 2</fullName><label>Tier 2</label><default>false</default></value>
+                <value><fullName>Non-HFTD</fullName><label>Non-HFTD</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Permission_Required__c</fullName>
+        <label>Permission Required</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Permission_Type__c</fullName>
+        <label>Permission Type</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Private Land</fullName><label>Private Land</label><default>false</default></value>
+                <value><fullName>Government</fullName><label>Government</label><default>false</default></value>
+                <value><fullName>Tribal Land</fullName><label>Tribal Land</label><default>false</default></value>
+                <value><fullName>Railroad</fullName><label>Railroad</label><default>false</default></value>
+                <value><fullName>Other</fullName><label>Other</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Permission_Contact__c</fullName>
+        <label>Permission Contact</label>
+        <type>Text</type>
+        <length>100</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Permission_Status__c</fullName>
+        <label>Permission Status</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Not Required</fullName><label>Not Required</label><default>true</default></value>
+                <value><fullName>Pending</fullName><label>Pending</label><default>false</default></value>
+                <value><fullName>Approved</fullName><label>Approved</label><default>false</default></value>
+                <value><fullName>Denied</fullName><label>Denied</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Gate_Code_Access_Notes__c</fullName>
+        <label>Gate Code / Access Notes</label>
+        <type>Text</type>
+        <length>255</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>GPS_Coordinates__c</fullName>
+        <label>GPS Coordinates</label>
+        <type>Location</type>
+        <required>false</required>
+        <scale>8</scale>
+    </fields>
+    <fields>
+        <fullName>Road_Accessible__c</fullName>
+        <label>Road Accessible</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Flight_Route_Details__c</fullName>
+        <label>Flight / Route Details</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>4</visibleLines>
+    </fields>
+
+    <!-- ── LIVE HAZARD & WEATHER ── -->
+    <fields>
+        <fullName>Current_Temperature__c</fullName>
+        <label>Current Temperature (°F)</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Current_Wind_Speed__c</fullName>
+        <label>Current Wind Speed (mph)</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Wind_Direction__c</fullName>
+        <label>Wind Direction</label>
+        <type>Text</type>
+        <length>50</length>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Humidity__c</fullName>
+        <label>Humidity %</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Fire_Danger_Rating__c</fullName>
+        <label>Fire Danger Rating</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Low</fullName><label>Low</label><default>false</default></value>
+                <value><fullName>Moderate</fullName><label>Moderate</label><default>false</default></value>
+                <value><fullName>High</fullName><label>High</label><default>false</default></value>
+                <value><fullName>Very High</fullName><label>Very High</label><default>false</default></value>
+                <value><fullName>Extreme</fullName><label>Extreme</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Red_Flag_Warning__c</fullName>
+        <label>Red Flag Warning</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>AQI__c</fullName>
+        <label>Air Quality Index (AQI)</label>
+        <type>Number</type>
+        <precision>5</precision>
+        <scale>0</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Lightning_Activity__c</fullName>
+        <label>Lightning Activity</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Nearest_Active_Fire__c</fullName>
+        <label>Nearest Active Fire (miles)</label>
+        <type>Number</type>
+        <precision>6</precision>
+        <scale>1</scale>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Hazard_Warning_Active__c</fullName>
+        <label>Hazard Warning Active</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Hazard_Warning_Details__c</fullName>
+        <label>Hazard Warning Details</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Last_Weather_Sync__c</fullName>
+        <label>Last Weather Sync</label>
+        <type>DateTime</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Weather_Sync_Status__c</fullName>
+        <label>Weather Sync Status</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Synced</fullName><label>Synced</label><default>false</default></value>
+                <value><fullName>Failed</fullName><label>Failed</label><default>false</default></value>
+                <value><fullName>Pending</fullName><label>Pending</label><default>false</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+
+    <!-- ── NOTIFICATIONS ── -->
+    <fields>
+        <fullName>Notification_Sent__c</fullName>
+        <label>Notification Sent</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Notification_Date__c</fullName>
+        <label>Notification Date</label>
+        <type>DateTime</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Notification_Method__c</fullName>
+        <label>Notification Method</label>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value><fullName>Email</fullName><label>Email</label><default>false</default></value>
+                <value><fullName>SMS</fullName><label>SMS</label><default>false</default></value>
+                <value><fullName>Salesforce Bell</fullName><label>Salesforce Bell</label><default>false</default></value>
+                <value><fullName>All</fullName><label>All</label><default>true</default></value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Inspector_Acknowledged__c</fullName>
+        <label>Inspector Acknowledged</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Acknowledged_Date__c</fullName>
+        <label>Acknowledged Date</label>
+        <type>DateTime</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Escalation_Required__c</fullName>
+        <label>Escalation Required</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Escalated_To__c</fullName>
+        <label>Escalated To</label>
+        <type>Lookup</type>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Escalated_Assignments</relationshipName>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Reminder_Sent__c</fullName>
+        <label>Reminder Sent</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Reminder_Date__c</fullName>
+        <label>Reminder Date</label>
+        <type>DateTime</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>Completion_Notification_Sent__c</fullName>
+        <label>Completion Notification Sent</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+    <fields>
+        <fullName>Completion_Notification_Date__c</fullName>
+        <label>Completion Notification Date</label>
+        <type>DateTime</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>SMS_Phone__c</fullName>
+        <label>SMS Phone Number</label>
+        <type>Phone</type>
+        <required>false</required>
+    </fields>
+    <fields>
+        <fullName>SMS_Notification_Sent__c</fullName>
+        <label>SMS Notification Sent</label>
+        <type>Checkbox</type>
+        <defaultValue>false</defaultValue>
+    </fields>
+
+    <!-- ── COMPLETION ── -->
+    <fields>
+        <fullName>Inspection__c</fullName>
+        <label>Inspection</label>
+        <type>Lookup</type>
+        <referenceTo>Inspection__c</referenceTo>
+        <relationshipName>Inspection_Assignments</relationshipName>
+        <required>false</required>
+    </fields>
+</CustomObject>
