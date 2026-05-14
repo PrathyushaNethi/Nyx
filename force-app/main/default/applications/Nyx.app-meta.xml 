@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <description>Nyx — Wildfire Risk Intelligence and AI Defect Prioritization Platform</description>
+    <formFactors>Large</formFactors>
+    <formFactors>Small</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>Nyx</label>
+    <navType>Standard</navType>
+    <tabs>standard-home</tabs>
+    <tabs>Structure__c</tabs>
+    <tabs>Inspection__c</tabs>
+    <tabs>Inspection_Assignment__c</tabs>
+    <tabs>Wildfire_Risk_Score__c</tabs>
+    <tabs>AI_Priority_Queue__c</tabs>
+    <tabs>Work_Order__c</tabs>
+    <tabs>Circuit__c</tabs>
+    <tabs>Service_Territory__c</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>
