@@ -39,6 +39,11 @@
     transition: width 0.4s ease;
 }
 
+.nyx-score-critical { background-color: #c23934; }
+.nyx-score-high     { background-color: #e07b39; }
+.nyx-score-medium   { background-color: #f4bc25; }
+.nyx-score-low      { background-color: #04844b; }
+
 .nyx-badge-critical { --sds-c-badge-color-background: #c23934; --sds-c-badge-text-color: white; }
 .nyx-badge-high     { --sds-c-badge-color-background: #e07b39; --sds-c-badge-text-color: white; }
 .nyx-badge-medium   { --sds-c-badge-color-background: #f4bc25; --sds-c-badge-text-color: #1c1b1b; }
