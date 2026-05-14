@@ -4,26 +4,7 @@
     <label>Critical Defect Work Order Creator</label>
     <processType>AutoLaunchedFlow</processType>
     <status>Active</status>
-    <description>Automatically creates a Work Order when a Critical defect finding is created or updated</description>
-
-    <triggerType>RecordAfterSave</triggerType>
-    <object>Defect_Finding__c</object>
-    <recordTriggerType>CreateAndUpdate</recordTriggerType>
-    <filterLogic>and</filterLogic>
-    <filters>
-        <field>Severity__c</field>
-        <operator>EqualTo</operator>
-        <value>
-            <stringValue>Critical</stringValue>
-        </value>
-    </filters>
-    <filters>
-        <field>Status__c</field>
-        <operator>EqualTo</operator>
-        <value>
-            <stringValue>Open</stringValue>
-        </value>
-    </filters>
+    <description>Automatically creates a Work Order when a Critical defect finding is created</description>
 
     <recordCreates>
         <name>Create_Work_Order</name>
@@ -89,4 +70,5 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
+
 </Flow>
