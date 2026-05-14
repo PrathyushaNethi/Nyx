@@ -408,4 +408,44 @@ public class WildfireRiskScoreCalculatorTest {
         Integer count = [SELECT COUNT() FROM Wildfire_Risk_Score__c WHERE Structure__c IN :structureIds];
         Assert.areEqual(50, count, 'A Wildfire Risk Score should be created for each inspection in bulk');
     }
+
+    @isTest
+    static void testBulkInspectionsWithDefects_noGovernorLimits() {
+        // Proves the repeat-defect check uses one bulk SOQL, not one per inspection
+        Circuit__c circuit = makeCircuit('Non-HFTD');
+
+        List<Structure__c> structures = new List<Structure__c>();
+        for (Integer i = 0; i < 50; i++) {
+            structures.add(new Structure__c(Circuit__c = circuit.Id));
+        }
+        insert structures;
+
+        List<Inspection__c> inspections = new List<Inspection__c>();
+        for (Structure__c s : structures) {
+            inspections.add(new Inspection__c(Structure__c = s.Id, Inspection_Date__c = Date.today()));
+        }
+        insert inspections;
+
+        List<Defect_Finding__c> defects = new List<Defect_Finding__c>();
+        for (Integer i = 0; i < inspections.size(); i++) {
+            defects.add(new Defect_Finding__c(
+                Inspection__c = inspections[i].Id,
+                Structure__c  = structures[i].Id,
+                Defect_Type__c = 'Lean',
+                Severity__c    = 'Medium',
+                Status__c      = 'Open'
+            ));
+        }
+        insert defects;
+
+        List<Id> inspectionIds = new List<Id>(new Map<Id, Inspection__c>(inspections).keySet());
+
+        Test.startTest();
+        WildfireRiskScoreCalculator.calculateRiskScores(inspectionIds);
+        Test.stopTest();
+
+        Set<Id> structureIds = new Map<Id, Structure__c>(structures).keySet();
+        Integer count = [SELECT COUNT() FROM Wildfire_Risk_Score__c WHERE Structure__c IN :structureIds];
+        Assert.areEqual(50, count, 'Bulk inspections with defects should not hit SOQL governor limits');
+    }
 }

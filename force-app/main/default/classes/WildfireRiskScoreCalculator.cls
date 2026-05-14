@@ -1,8 +1,7 @@
 public class WildfireRiskScoreCalculator {
 
     public static void calculateRiskScores(List<Id> inspectionIds) {
-        
-        // Query inspections with all related data
+
         List<Inspection__c> inspections = [
             SELECT Id,
                    Structure__c,
@@ -22,6 +21,40 @@ public class WildfireRiskScoreCalculator {
             WHERE Id IN :inspectionIds
         ];
 
+        // ── Pre-scan: collect all defect types per inspection for bulk repeat-defect lookup ──
+        Map<Id, Set<String>> inspDefectTypes = new Map<Id, Set<String>>();
+        Set<Id> structuresWithDefects = new Set<Id>();
+        Set<String> allDefectTypes = new Set<String>();
+
+        for (Inspection__c insp : inspections) {
+            Set<String> types = new Set<String>();
+            for (Defect_Finding__c df : insp.Defect_Findings__r) {
+                if (df.Defect_Type__c != null) {
+                    types.add(df.Defect_Type__c);
+                    allDefectTypes.add(df.Defect_Type__c);
+                }
+            }
+            if (!types.isEmpty()) {
+                inspDefectTypes.put(insp.Id, types);
+                structuresWithDefects.add(insp.Structure__c);
+            }
+        }
+
+        // ── One bulk SOQL for all previous unresolved defects (replaces N SOQLs in loop) ──
+        Set<String> repeatKeys = new Set<String>(); // structureId|defectType
+        if (!structuresWithDefects.isEmpty()) {
+            for (Defect_Finding__c df : [
+                SELECT Structure__c, Defect_Type__c
+                FROM Defect_Finding__c
+                WHERE Structure__c IN :structuresWithDefects
+                AND Status__c != 'Resolved'
+                AND Defect_Type__c IN :allDefectTypes
+                AND Inspection__c NOT IN :inspectionIds
+            ]) {
+                repeatKeys.add(df.Structure__c + '|' + df.Defect_Type__c);
+            }
+        }
+
         List<Wildfire_Risk_Score__c> scoresToInsert = new List<Wildfire_Risk_Score__c>();
         List<Structure__c> structuresToUpdate = new List<Structure__c>();
 
@@ -34,10 +67,7 @@ public class WildfireRiskScoreCalculator {
             // ── Rule 1: Instant Critical — Vegetation Line Contact ──
             Boolean lineContact = false;
             for (Vegetation_Observation__c vo : insp.Vegetation_Observations__r) {
-                if (vo.Line_Contact__c) {
-                    lineContact = true;
-                    break;
-                }
+                if (vo.Line_Contact__c) { lineContact = true; break; }
             }
 
             if (lineContact) {
@@ -52,12 +82,8 @@ public class WildfireRiskScoreCalculator {
 
             // ── Rule 2: Defect Score ──
             Decimal defectScore = 0;
-            Set<String> currentDefectTypes = new Set<String>();
             for (Defect_Finding__c df : insp.Defect_Findings__r) {
                 defectScore += df.Defect_Score__c != null ? df.Defect_Score__c : 0;
-                if (df.Defect_Type__c != null) {
-                    currentDefectTypes.add(df.Defect_Type__c);
-                }
             }
             defectScore = Math.min(defectScore, 100);
 
@@ -69,7 +95,6 @@ public class WildfireRiskScoreCalculator {
                 else if (ageYears > 40) ageScore = 15;
                 else if (ageYears > 25) ageScore = 10;
                 else if (ageYears > 15) ageScore = 5;
-                else                    ageScore = 0;
             }
 
             // ── Rule 4: HFTD Zone Score ──
@@ -102,23 +127,17 @@ public class WildfireRiskScoreCalculator {
                 }
             }
 
-            // ── Rule 8: Repeat Defect Penalty ──
+            // ── Rule 8: Repeat Defect Penalty — in-memory lookup, no SOQL in loop ──
             Decimal repeatPenalty = 0;
-            if (!currentDefectTypes.isEmpty()) {
-                List<Defect_Finding__c> previousDefects = [
-                    SELECT Id FROM Defect_Finding__c
-                    WHERE Structure__c = :insp.Structure__c
-                    AND Status__c != 'Resolved'
-                    AND Defect_Type__c IN :currentDefectTypes
-                    AND Inspection__c != :insp.Id
-                    LIMIT 1
-                ];
-                if (!previousDefects.isEmpty()) {
-                    repeatPenalty = 15;
+            if (inspDefectTypes.containsKey(insp.Id)) {
+                for (String defectType : inspDefectTypes.get(insp.Id)) {
+                    if (repeatKeys.contains(insp.Structure__c + '|' + defectType)) {
+                        repeatPenalty = 15;
+                        break;
+                    }
                 }
             }
 
-            // ── Set all scores ──
             riskScore.Defect_Score__c     = Math.min(defectScore + repeatPenalty, 100);
             riskScore.Age_Score__c        = ageScore + windScore;
             riskScore.HFTD_Zone_Score__c  = hftdScore;
@@ -127,7 +146,6 @@ public class WildfireRiskScoreCalculator {
 
             scoresToInsert.add(riskScore);
 
-            // ── Update Last Inspection Date on Structure ──
             structuresToUpdate.add(new Structure__c(
                 Id = insp.Structure__c,
                 Last_Inspection_Date__c = insp.Inspection_Date__c
@@ -145,13 +163,11 @@ public class WildfireRiskScoreCalculator {
     }
 
     private static void syncAIPriorityQueue(List<Wildfire_Risk_Score__c> insertedScores) {
-        // Build structure → risk score map with in-memory total scores
         Map<Id, Wildfire_Risk_Score__c> structureToScore = new Map<Id, Wildfire_Risk_Score__c>();
         for (Wildfire_Risk_Score__c wrs : insertedScores) {
             structureToScore.put(wrs.Structure__c, wrs);
         }
 
-        // Find existing active queue records for these structures
         Map<Id, AI_Priority_Queue__c> existingQueue = new Map<Id, AI_Priority_Queue__c>();
         for (AI_Priority_Queue__c q : [
             SELECT Id, Structure__c
@@ -190,7 +206,6 @@ public class WildfireRiskScoreCalculator {
         }
         upsert queueToUpsert;
 
-        // Re-rank all active queue records globally by AI_Composite_Score__c (formula)
         List<AI_Priority_Queue__c> allActive = [
             SELECT Id
             FROM AI_Priority_Queue__c
