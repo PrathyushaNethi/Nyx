@@ -1,0 +1,121 @@
+<template>
+    <lightning-card title="Wildfire Risk Dashboard" icon-name="standard:metrics">
+        
+        <div slot="actions">
+            <lightning-button-icon
+                icon-name="utility:refresh"
+                alternative-text="Refresh"
+                title="Refresh"
+                onclick={handleRefresh}>
+            </lightning-button-icon>
+        </div>
+
+        <div class="slds-card__body slds-card__body_inner">
+
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading dashboard" size="medium"></lightning-spinner>
+            </template>
+
+            <template if:false={isLoading}>
+
+                <!-- Risk Tier Summary Cards -->
+                <div class="slds-grid slds-gutters slds-wrap slds-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-2 slds-large-size_1-of-4">
+                        <div class="nyx-stat-card nyx-critical">
+                            <p class="nyx-stat-label">Critical</p>
+                            <p class="nyx-stat-number">{criticalCount}</p>
+                            <p class="nyx-stat-sub">structures</p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-large-size_1-of-4">
+                        <div class="nyx-stat-card nyx-high">
+                            <p class="nyx-stat-label">High</p>
+                            <p class="nyx-stat-number">{highCount}</p>
+                            <p class="nyx-stat-sub">structures</p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-large-size_1-of-4">
+                        <div class="nyx-stat-card nyx-medium">
+                            <p class="nyx-stat-label">Medium</p>
+                            <p class="nyx-stat-number">{mediumCount}</p>
+                            <p class="nyx-stat-sub">structures</p>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-large-size_1-of-4">
+                        <div class="nyx-stat-card nyx-low">
+                            <p class="nyx-stat-label">Low</p>
+                            <p class="nyx-stat-number">{lowCount}</p>
+                            <p class="nyx-stat-sub">structures</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Risk Distribution Bar -->
+                <div class="slds-m-bottom_medium">
+                    <p class="slds-text-title slds-m-bottom_xx-small">Risk Distribution</p>
+                    <div class="nyx-distribution-bar">
+                        <div class="nyx-dist-critical" style={criticalBarStyle} title="Critical"></div>
+                        <div class="nyx-dist-high" style={highBarStyle} title="High"></div>
+                        <div class="nyx-dist-medium" style={mediumBarStyle} title="Medium"></div>
+                        <div class="nyx-dist-low" style={lowBarStyle} title="Low"></div>
+                    </div>
+                    <div class="slds-grid slds-m-top_xx-small">
+                        <div class="slds-col">
+                            <span class="nyx-legend nyx-legend-critical">Critical {criticalPercent}%</span>
+                        </div>
+                        <div class="slds-col">
+                            <span class="nyx-legend nyx-legend-high">High {highPercent}%</span>
+                        </div>
+                        <div class="slds-col">
+                            <span class="nyx-legend nyx-legend-medium">Medium {mediumPercent}%</span>
+                        </div>
+                        <div class="slds-col">
+                            <span class="nyx-legend nyx-legend-low">Low {lowPercent}%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="nyx-metric-card">
+                            <lightning-icon icon-name="utility:warning" size="small" class="slds-m-right_small"></lightning-icon>
+                            <div>
+                                <p class="nyx-metric-label">Open Work Orders</p>
+                                <p class="nyx-metric-value">{openWorkOrders}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="nyx-metric-card">
+                            <lightning-icon icon-name="utility:date_time" size="small" class="slds-m-right_small"></lightning-icon>
+                            <div>
+                                <p class="nyx-metric-label">Overdue Inspections</p>
+                                <p class="nyx-metric-value">{overdueInspections}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="nyx-metric-card">
+                            <lightning-icon icon-name="utility:leaf" size="small" class="slds-m-right_small"></lightning-icon>
+                            <div>
+                                <p class="nyx-metric-label">Vegetation Contacts</p>
+                                <p class="nyx-metric-value">{vegetationContacts}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="nyx-metric-card">
+                            <lightning-icon icon-name="utility:checkin" size="small" class="slds-m-right_small"></lightning-icon>
+                            <div>
+                                <p class="nyx-metric-label">Total Structures</p>
+                                <p class="nyx-metric-value">{totalStructures}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </template>
+        </div>
+    </lightning-card>
+</template>

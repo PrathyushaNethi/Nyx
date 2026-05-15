@@ -1,0 +1,58 @@
+.nyx-stat-card {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid;
+}
+
+.nyx-critical { background: #fef2f2; border-color: #c23934; }
+.nyx-high     { background: #fff7ed; border-color: #e07b39; }
+.nyx-medium   { background: #fefce8; border-color: #f4bc25; }
+.nyx-low      { background: #f0fdf4; border-color: #04844b; }
+
+.nyx-stat-label  { font-size: 0.75rem; font-weight: 600; color: #64748b; margin: 0; }
+.nyx-stat-number { font-size: 2rem; font-weight: 700; margin: 0.25rem 0; }
+.nyx-stat-sub    { font-size: 0.75rem; color: #94a3b8; margin: 0; }
+
+.nyx-critical .nyx-stat-number { color: #c23934; }
+.nyx-high     .nyx-stat-number { color: #e07b39; }
+.nyx-medium   .nyx-stat-number { color: #f4bc25; }
+.nyx-low      .nyx-stat-number { color: #04844b; }
+
+.nyx-distribution-bar {
+    display: flex;
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #f1f5f9;
+}
+
+.nyx-dist-critical { background: #c23934; transition: width 0.4s ease; }
+.nyx-dist-high     { background: #e07b39; transition: width 0.4s ease; }
+.nyx-dist-medium   { background: #f4bc25; transition: width 0.4s ease; }
+.nyx-dist-low      { background: #04844b; transition: width 0.4s ease; }
+
+.nyx-legend {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.nyx-legend-critical { color: #c23934; }
+.nyx-legend-high     { color: #e07b39; }
+.nyx-legend-medium   { color: #f4bc25; }
+.nyx-legend-low      { color: #04844b; }
+
+.nyx-metric-card {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.nyx-metric-label { font-size: 0.75rem; color: #64748b; margin: 0; }
+.nyx-metric-value { font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0; }
